@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="style.css">
+<script src="/socket.io/socket.io.js"></script>
+<script src="main.js"></script>
+<body>
+    <div>
+        <div class="w3-top w3-row w3-black">
+            <!--fixed back button and fixed #of rounds-->
+            <div class="w3-col s4 w3-center w3-bar-item">
+                <form>
+                    <div class="w3-button" name='join' value='join' onclick="goBack()">LEAVE</div>
+                </form>
+            </div>
+            <div class="w3-col s4 w3-center w3-bar-item"><h3 id="czar">CARD CZAR</h3></div>
+            <div class="w3-col s4 w3-center w3-bar-item"><button class="w3-button" id="points">2 AWESOME POINTS</button></div>
+        </div>
+        <div class="w3-left w3-black w3-hide-small w3-padding">
+            <div id="roomInfo">
+                <h1 id="roomName">roomname</h1>
+                <div id="nameList">
+                    <!--names of players-->
+
+                </div>
+            </div>
+        </div>  
+        <div class="w3-content w3-centered" style="margin-top: 56px;">
+            <div class="w3-centered scrollmenu" id="othercards">
+                <!--other players cards-->
+                <button class="w3-button card w3-red" id="winner" onclick="choseTheWinner()" disabled>Confirm</button>
+            </div>
+            <div class="w3-padding-16 w3-center">
+                <!--the black card-->
+                <div class="w3-button w3-black card" id="blackCard"></div>
+                <div class="w3-button w3-black card" id="pick"></div>
+
+            </div>
+            <div class="w3-centered scrollmenu" id="mycards">
+                <!--this players cards-->
+
+                <button class="w3-button card w3-red" id="confirm" onclick="confirmCards()">Confirm</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

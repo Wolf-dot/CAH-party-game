@@ -1,0 +1,33 @@
+body,h1 {font-family: "Raleway", sans-serif}
+
+body, html {height:fit-content}
+
+div.scrollmenu {
+  background-color: rgb(240, 240, 240);
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu button {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+  margin-right: 4px;
+  background-color: #2f6287;
+
+}
+
+div.scrollmenu button:hover {
+  background-color: #777;
+}
+
+.card{
+    white-space: normal;
+    width: 15em;
+    height: 15em;
+}
+.white{
+    width: 25%; 
+}
