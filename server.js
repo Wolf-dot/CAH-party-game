@@ -100,15 +100,9 @@ io.on('connection', (socket) => {
             }
         });
         
-        io.to(winner.room).emit('winnerInfo', {winnerID, bestText});
-        const winnerInfo = {text: bestText, pick: winnerID};
-        // ?
-        io.to(winner.room).emit('roomData', {
-            room: room,
-            users: getUsersInRoom(room),
-            cardData: {chosenBlackCard: winnerInfo, chosenCards: []}
-        });
-        
+        io.to(winner.room).emit('winnerInfo', {winnerID, bestText}, users);
+    });
+
     });
     
 

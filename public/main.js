@@ -115,13 +115,15 @@ socket.on("chooseBest", () => {
     document.getElementById('winner').disabled = false; 
 });
 
-socket.on("winnerInfo", ({winnerID, bestText}) => {
-    console.log("winner " + winnerID);
-    console.log("text " + bestText);
-
+socket.on("winnerInfo", ({winnerID, bestText}, users) => {
     document.getElementById('pick').innerText = bestText + '\n' + "-" + winnerID;
-
-
+    let nameList = document.getElementById('nameList');
+    while(nameList.hasChildNodes()){nameList.removeChild(nameList.firstChild)}
+    users.forEach(user => {
+        let name = document.createElement('p');
+        name.innerText = user.username.toLowerCase() + " " + user.points;
+        document.getElementById('nameList').appendChild(name);
+    });
 });
 
 function confirmCards(){
