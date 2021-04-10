@@ -49,7 +49,6 @@ socket.on('roomData', ({room, users, cardData: {chosenBlackCard: {text, pick}, c
         name.innerText = user.username.toLowerCase();
         points.innerText = user.points;
         document.getElementById('nameList').appendChild(name);
-        document.getElementById('nameList').appendChild(points);
     });
 
     if(chosenCards !== []){
