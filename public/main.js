@@ -73,10 +73,12 @@ socket.on('roomData', ({room, users, cardData: {chosenBlackCard: {text, pick}, c
         });
     }
 
-    if(isCzar){
+    const me = users.filter( user => user.id === socket.id)[0];
+    if(me.czar){
         document.getElementById('confirm').disabled = true;
     }
-
+    const currentCzar = users.filter( user => user.czar === true)[0];
+    document.getElementById('czar').innerText = currentCzar.username + " is Czar!";
 });
 
 socket.on('chosenCards', ({user, cards}) => {
