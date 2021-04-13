@@ -11,7 +11,6 @@ socket.emit("join", (error) => {
 });
 
 socket.on('yourCards', (cards)=>{
-    console.log(cards);
     for(let i = 0; i<cards.length; i++){
         let button = document.createElement('button');
         button.style.backgroundColor = 'rgb(47, 98, 135)';
@@ -20,11 +19,9 @@ socket.on('yourCards', (cards)=>{
             if(this.style.backgroundColor == "rgb(47, 98, 135)"){
                 this.style.backgroundColor = 'rgb(9, 121, 130)';
                 myChosenCards.push(this);
-                console.log(myChosenCards);
             }else{
                 this.style.backgroundColor = "rgb(47, 98, 135)";
                 myChosenCards.splice(myChosenCards.indexOf(this), 1);
-                console.log(myChosenCards);
             }  
         });
         button.className = "w3-button card";
@@ -64,11 +61,9 @@ socket.on('roomData', ({room, users, cardData: {chosenBlackCard: {text, pick}, c
                 if(this.style.backgroundColor == "rgb(47, 98, 135)"){
                     this.style.backgroundColor = 'rgb(9, 121, 130)';
                     winningCard = this;
-                    console.log(winningCard);
                 }else{
                     this.style.backgroundColor = "rgb(47, 98, 135)";
                     winningCard = null;
-                    console.log(winningCard);
                 }  
             });
             document.getElementById('othercards').appendChild(button);
@@ -89,15 +84,12 @@ socket.on('chosenCards', ({user, cards}) => {
     let button = document.createElement('button');
     button.style.backgroundColor = 'rgb(47, 98, 135)';
     button.addEventListener('click', function() {
-        console.log(this.style.backgroundColor);
         if(this.style.backgroundColor == "rgb(47, 98, 135)"){
             this.style.backgroundColor = 'rgb(9, 121, 130)';
             winningCard = this;
-            console.log(winningCard);
         }else{
             this.style.backgroundColor = "rgb(47, 98, 135)";
             winningCard = null;
-            console.log(winningCard);
         }  
     });
     button.className = "w3-button card";
@@ -117,7 +109,6 @@ socket.on("cardsSentOK", () => {
 });
 
 socket.on("chooseBest", () => {
-    console.log("choose the best card!");
     document.getElementById('winner').disabled = false; 
 });
 
@@ -137,7 +128,6 @@ function confirmCards(){
         let cards = [];
         for(let i = 0; i < myChosenCards.length; i++){
             cards.push(myChosenCards[i].textContent);
-            console.log(cards);
         }
         socket.emit('sendCards', cards);
     }else{alert('choose some cards')}
@@ -147,11 +137,9 @@ function appendChosenCards(user, cards){
     let button = document.createElement('button');
     button.style.backgroundColor = 'rgb(47, 98, 135)';
     button.addEventListener('click', function() {
-        console.log(this.style.backgroundColor);
         if(this.style.backgroundColor == "rgb(47, 98, 135)"){
             this.style.backgroundColor = 'rgb(9, 121, 130)';
             winningCard = this;
-            console.log(winningCard);
         }else{
             this.style.backgroundColor = "rgb(47, 98, 135)";
             winningCard = null;

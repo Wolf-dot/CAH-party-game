@@ -16,7 +16,6 @@ const getWhiteCards = (amount, roomName) => {
             existingCards.cardsWhite.splice(rnd,1);
         }
     }else{
-        console.log('didnt find any');
         const newRoomCards = createRoomCards(roomName);
         for(let i = 0; i < amount; i++){
             let rnd = getRandomInt(newRoomCards.cardsWhite.length);
@@ -84,7 +83,6 @@ function createRoomCards(room){
     roomCards.chosenBlackCard = roomCards.cardsBlack[rnd];
     roomCards.cardsBlack.splice(rnd,1);
     cardsInRoom.push(roomCards);
-    console.log("here be roomcards: " + roomCards);
     return roomCards;
 }
 

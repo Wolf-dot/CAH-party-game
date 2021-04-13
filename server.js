@@ -28,7 +28,6 @@ io.on('connection', (socket) => {
     console.log('New socket connected');
 
     socket.on('join', (callback) => {
-        console.log("adding users");
         const {error, user} = addUser({id: socket.id, username: nameAndRoom.name, room: nameAndRoom.room});
 
         if(error){
@@ -36,7 +35,6 @@ io.on('connection', (socket) => {
         }
 
         socket.join(user.room);
-        console.log(user.username + " joined " + user.room + "are they czar: " + user.czar);
         socket.emit('yourCards', getWhiteCards(10, user.room));
         io.in(user.room).emit('roomData', {
             room: user.room,
@@ -50,7 +48,6 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         const user = removeUser(socket.id);
         console.log(`user disconnected`);
-        console.log(user);
 
         if (user) {
             io.to(user.room).emit('roomData', {
@@ -80,7 +77,6 @@ io.on('connection', (socket) => {
         }
 
         if(everyoneSubmitted(user.room)){
-            console.log("EVERYONE SENT THEIR CARDS");
             const cardCzar = getCzar(user.room);
             io.to(cardCzar.id).emit("chooseBest");
         }
@@ -91,8 +87,6 @@ io.on('connection', (socket) => {
         const users = getUsersInRoom(room);
         const winner = users.filter( user => user.username === winnerID)[0];
         addPoints(winner);
-        console.log(users);
-
         users.forEach(user => {
             if(user.submitted){
                 io.to(user.id).emit("yourCards", getWhiteCards(1, room));

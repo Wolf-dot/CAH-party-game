@@ -1,7 +1,6 @@
 const users = [];
 
 const addUser = ({id, username, room}) => {
-    console.log(username + "is getting added to " + room);
     username = username.trim().toUpperCase();
     room = room.trim().toUpperCase();
 
@@ -59,9 +58,7 @@ const getUsersInRoom = (room) => {
 
 const everyoneSubmitted = (room) => {
     const roomUsers = users.filter( user => user.room === room);
-    console.log(`there are:  ${roomUsers.length} users!`);
     const submitions = roomUsers.filter( user => user.submitted === true);
-    console.log(`this many:  ${submitions.length} submitted cards!`);
     if(submitions.length === roomUsers.length - 1){
         return true;
     }else{
