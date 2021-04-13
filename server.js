@@ -103,7 +103,15 @@ io.on('connection', (socket) => {
         io.to(winner.room).emit('winnerInfo', {winnerID, bestText}, users);
     });
 
-    });
+    socket.on('nextRound', () => {
+        //delete chosen cards and pick a new black card and send to everyones
+        const room = getUser(socket.id).room;
+        io.to(room).emit('roomData', {
+            room: room,
+            users: nextCzar(room),
+            cardData: nextCards(room)
+        });
+    })
     
 
 

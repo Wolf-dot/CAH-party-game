@@ -34,9 +34,14 @@ socket.on('yourCards', (cards)=>{
     }
 });
 
-socket.on('roomData', ({room, users, cardData: {chosenBlackCard: {text, pick}, chosenCards}, isCzar}) => {
+socket.on('roomData', ({room, users, cardData: {chosenBlackCard: {text, pick}, chosenCards}}) => {
+    document.getElementById('confirm').disabled = false;     //enabled only for player
+    document.getElementById('next').disabled = true;        //enabled only for czar
+    document.getElementById('winner').disabled = true;      //enabled only for czar
+
     // show room name, current card czar (gotta add it), and the black card
     document.getElementById('blackCard').innerText = text + '\n' + pick;    
+    document.getElementById('pick').innerText = "";
 
     document.getElementById('roomName').innerText = room;
     let nameList = document.getElementById('nameList');
@@ -44,10 +49,7 @@ socket.on('roomData', ({room, users, cardData: {chosenBlackCard: {text, pick}, c
     while(nameList.hasChildNodes()){nameList.removeChild(nameList.firstChild)}
     users.forEach(user => {
         let name = document.createElement('p');
-        let points = document.createElement('p');
-
-        name.innerText = user.username.toLowerCase();
-        points.innerText = user.points;
+        name.innerText = user.username.toLowerCase() + " " + user.points;
         document.getElementById('nameList').appendChild(name);
     });
 
@@ -75,7 +77,9 @@ socket.on('roomData', ({room, users, cardData: {chosenBlackCard: {text, pick}, c
 
     const me = users.filter( user => user.id === socket.id)[0];
     if(me.czar){
-        document.getElementById('confirm').disabled = true;
+        document.getElementById('confirm').disabled = true;     //enabled only for player
+        document.getElementById('next').disabled = false;        //enabled only for czar
+        document.getElementById('winner').disabled = false;      //enabled only for czar
     }
     const currentCzar = users.filter( user => user.czar === true)[0];
     document.getElementById('czar').innerText = currentCzar.username + " is Czar!";
@@ -169,4 +173,8 @@ function choseTheWinner(){
     }else{
         alert("choose a winner!");
     }
+}
+
+function nextRound(){
+    socket.emit('nextRound');
 }

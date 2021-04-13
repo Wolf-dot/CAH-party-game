@@ -11,10 +11,12 @@
 <body>
     <div>
         <div class="w3-top w3-row w3-black">
-            <!--fixed back button and fixed #of rounds-->
+            <!--fixed next round button and fixed #of rounds-->
+            <div class="w3-col s4 w3-center w3-bar-item"><h3 id="czar">CARD CZAR</h3></div>
+            <div class="w3-col s4 w3-center w3-bar-item w3-hide-large"><button class="w3-button" id="points">2 AWESOME POINTS</button></div>
             <div class="w3-col s4 w3-center w3-bar-item">
                 <form>
-                    <div class="w3-button" name='join' value='join' onclick="goBack()">LEAVE</div>
+                    <div class="w3-button" name='next' id='next' onclick="nextRound()">NEXT ROUND</div>
                 </form>
             </div>
             <div class="w3-col s4 w3-center w3-bar-item"><h3 id="czar">CARD CZAR</h3></div>
