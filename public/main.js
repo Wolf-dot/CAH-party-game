@@ -50,11 +50,11 @@ socket.on('roomData', ({room, users, cardData: {chosenBlackCard: {text, pick}, c
         document.getElementById('nameList').appendChild(name);
     });
 
-    if(chosenCards !== []){
+    if(chosenCards.length !== 0){
         chosenCards.forEach(card => {
             let button = document.createElement('button');
             button.style.backgroundColor = 'rgb(47, 98, 135)';
-            button.className = "w3-button card";
+            button.className = "w3-button card chosen";
             button.textContent = card;
             button.addEventListener('click', function() {
                 console.log(this.style.backgroundColor);
@@ -68,6 +68,9 @@ socket.on('roomData', ({room, users, cardData: {chosenBlackCard: {text, pick}, c
             });
             document.getElementById('othercards').appendChild(button);
         });
+    }else{
+        const otherCards = document.getElementsByClassName("chosen");
+        while(otherCards[0]){otherCards[0].parentNode.removeChild(otherCards[0])}
     }
 
     const me = users.filter( user => user.id === socket.id)[0];
@@ -78,6 +81,7 @@ socket.on('roomData', ({room, users, cardData: {chosenBlackCard: {text, pick}, c
     }
     const currentCzar = users.filter( user => user.czar === true)[0];
     document.getElementById('czar').innerText = currentCzar.username + " is Czar!";
+    myChosenCards = [];
 });
 
 socket.on('chosenCards', ({user, cards}) => {
@@ -92,7 +96,7 @@ socket.on('chosenCards', ({user, cards}) => {
             winningCard = null;
         }  
     });
-    button.className = "w3-button card";
+    button.className = "w3-button card chosen";
     button.id = user.username;
     button.textContent += cards;
     
@@ -145,7 +149,7 @@ function appendChosenCards(user, cards){
             winningCard = null;
         }  
     });
-    button.className = "w3-button card";
+    button.className = "w3-button card chosen";
     button.id = user.username;
     for (const card of cards) {
         button.textContent += card + '\n';
@@ -157,6 +161,7 @@ function choseTheWinner(){
     if(winningCard !== null){
         document.getElementById('winner').disabled = true;
         socket.emit("winner", winningCard.id, winningCard.textContent);
+        winningCard = null;
         // reset the game after clicking OK, next card czar
     }else{
         alert("choose a winner!");
