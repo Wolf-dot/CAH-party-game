@@ -39,8 +39,7 @@ io.on('connection', (socket) => {
         io.in(user.room).emit('roomData', {
             room: user.room,
             users: getUsersInRoom(user.room),
-            cardData: getCardData(user.room),
-            isCzar: user.czar
+            cardData: getCardData(user.room)
         });
         callback();
     });
