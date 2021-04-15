@@ -62,6 +62,17 @@ function getCardData(roomName){
     }
 }
 
+function nextCards(room){
+    const existingCards = cardsInRoom.find( cards => cards.room === room);
+    existingCards.chosenCards = [];
+
+    let rnd = getRandomInt(existingCards.cardsBlack.length);
+    existingCards.chosenBlackCard = existingCards.cardsBlack[rnd];
+    existingCards.cardsBlack.splice(rnd,1);
+
+    return existingCards;
+}
+
 function addChosenCards(cards, roomName){
     const existingCards = cardsInRoom.find( ({room}) => room === roomName);
     existingCards.chosenCards.push(cards);

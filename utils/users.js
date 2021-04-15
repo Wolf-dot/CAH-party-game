@@ -73,7 +73,19 @@ const getCzar = (room) => {
 
 const addPoints = (user) => {
     user.points++;
-    console.log(`${user.username} has now ${user.points} points!`);
+}
+
+const nextCzar = (room) => {
+    const roomUsers = users.filter( user => user.room === room);
+    const czar = roomUsers.findIndex( user => user.czar === true);
+    roomUsers[czar].czar = false;
+    if(roomUsers.length > czar + 1){
+        roomUsers[czar + 1].czar = true;
+    }else{
+        roomUsers[0].czar = true;
+    }
+
+    return roomUsers;
 }
 
 module.exports = {
@@ -83,5 +95,6 @@ module.exports = {
     getUsersInRoom,
     everyoneSubmitted,
     getCzar,
-    addPoints
+    addPoints,
+    nextCzar
 }
