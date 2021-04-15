@@ -27,31 +27,6 @@ const getWhiteCards = (amount, roomName) => {
     return deck;
 }
 
-const getBlackCard = (roomName) => {
-    let blackCard;
-    const existingCards = cardsInRoom.find( ({room}) => room === roomName);
-    
-    if(existingCards !== undefined){
-        let rnd = getRandomInt(existingCards.cardsBlack.length);
-        blackCard = existingCards.cardsBlack[rnd];
-        existingCards.cardsBlack.splice(rnd,1);
-        return blackCard;
-    }else{
-        const newRoomCards = createRoomCards(roomName);
-        return newRoomCards.chosenBlackCard;
-    }
-}
-
-function getWhiteChosenCards(roomName){
-    const existingCards = cardsInRoom.find( ({room}) => room === roomName);
-    if(existingCards !== undefined){
-        return existingCards.chosenCards;
-    }else{
-        const newRoomCards = createRoomCards(roomName);
-        return newRoomCards.chosenCards;
-    }
-}
-
 function getCardData(roomName){
     const existingCards = cardsInRoom.find( ({room}) => room === roomName);
     if(existingCards !== undefined){
@@ -100,7 +75,7 @@ function createRoomCards(room){
 
 module.exports = {
     getWhiteCards,
-    getWhiteChosenCards,
     addChosenCards,
-    getCardData
+    getCardData,
+    nextCards
 }

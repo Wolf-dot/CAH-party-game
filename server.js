@@ -2,7 +2,7 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const {addUser, removeUser, getUser, getUsersInRoom, everyoneSubmitted, getCzar, addPoints, nextCzar} = require('./utils/users');
-const {getWhiteCards, getWhiteChosenCards, addChosenCards, getCardData, nextCards} = require('./utils/cards');
+const {getWhiteCards, addChosenCards, getCardData, nextCards} = require('./utils/cards');
 
 const app = express();
 const server = http.createServer(app);
