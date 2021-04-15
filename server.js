@@ -59,10 +59,7 @@ io.on('connection', (socket) => {
 
     socket.on('sendCards', (cards)=>{
         const user = getUser(socket.id);
-        const {chosenBlackCard: {text, pick}} = getCardData(user.room);
-
-        console.log("HERE ERE " + text + pick);
-        
+        const {chosenBlackCard: {text, pick}} = getCardData(user.room);        
         if(cards.length === pick){
             addChosenCards(cards, user.room);
             socket.emit('cardsSentOK');
