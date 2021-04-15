@@ -42,6 +42,7 @@ socket.on('roomData', ({room, users, cardData: {chosenBlackCard: {text, pick}, c
 
     document.getElementById('roomName').innerText = room;
     let nameList = document.getElementById('nameList');
+    const me = users.filter( user => user.id === socket.id)[0];
 
     while(nameList.hasChildNodes()){nameList.removeChild(nameList.firstChild)}
     users.forEach(user => {
@@ -49,6 +50,7 @@ socket.on('roomData', ({room, users, cardData: {chosenBlackCard: {text, pick}, c
         name.innerText = user.username.toLowerCase() + " " + user.points;
         document.getElementById('nameList').appendChild(name);
     });
+    document.getElementById('points').innerText = me.points + '\n awesome points';
 
     if(chosenCards.length !== 0){
         chosenCards.forEach(card => {
@@ -73,7 +75,6 @@ socket.on('roomData', ({room, users, cardData: {chosenBlackCard: {text, pick}, c
         while(otherCards[0]){otherCards[0].parentNode.removeChild(otherCards[0])}
     }
 
-    const me = users.filter( user => user.id === socket.id)[0];
     if(me.czar){
         document.getElementById('confirm').disabled = true;     //enabled only for player
         document.getElementById('next').disabled = false;        //enabled only for czar
