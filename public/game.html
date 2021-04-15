@@ -10,42 +10,45 @@
 <script src="main.js"></script>
 <body>
     <div>
-        <div class="w3-top w3-row w3-black">
+        <div class="w3-row w3-black">
             <!--fixed next round button and fixed #of rounds-->
-            <div class="w3-col s4 w3-center w3-bar-item"><h3 id="czar">CARD CZAR</h3></div>
-            <div class="w3-col s4 w3-center w3-bar-item w3-hide-large"><button class="w3-button" id="points">2 AWESOME POINTS</button></div>
-            <div class="w3-col s4 w3-center w3-bar-item">
-                <form>
-                    <div class="w3-button" name='next' id='next' onclick="nextRound()">NEXT ROUND</div>
-                </form>
+            <div class="w3-container w3-col w3-center w3-bar-item" style="width: 33%;"><button class="w3-button w3-hide-large" id="points">2 AWESOME POINTS</button></div>
+            <div class="w3-container w3-col w3-center w3-bar-item" style="width: 33%;"><h3 id="czar">CARD CZAR</h3></div>
+            <div class="w3-container w3-col w3-center w3-bar-item" style="width: 33%;">
+                <button class="w3-button" name='next' id='next' onclick="nextRound()">NEXT ROUND</button>
             </div>
-            <div class="w3-col s4 w3-center w3-bar-item"><h3 id="czar">CARD CZAR</h3></div>
-            <div class="w3-col s4 w3-center w3-bar-item"><button class="w3-button" id="points">2 AWESOME POINTS</button></div>
         </div>
-        <div class="w3-left w3-black w3-hide-small w3-padding">
-            <div id="roomInfo">
-                <h1 id="roomName">roomname</h1>
-                <div id="nameList">
-                    <!--names of players-->
+
+
+        <div class="w3-row">
+            <div class="w3-container w3-col m2 w3-black w3-hide-small">
+                <div id="roomInfo">
+                    <h1 id="roomName">roomname</h1>
+                    <div id="nameList">
+                        <!--names of players-->
+
+                    </div>
+                </div>
+            </div>  
+            <div class="w3-container w3-col m8 w3-centered">
+                <div class="w3-centered scrollmenu" id="othercards">
+                    <!--other players cards-->
+                    <button class="w3-button card w3-red" id="winner" onclick="choseTheWinner()">Confirm</button>
+                </div>
+                <div class="w3-padding-16 w3-center">
+                    <!--the black card-->
+                    <div class="w3-button w3-black card" id="blackCard"></div>
+                    <div class="w3-button w3-black card" id="pick"></div>
+    
+                </div>
+                <div class="w3-centered scrollmenu" id="mycards">
+                    <!--this players cards-->
+                    <button class="w3-button card w3-red" id="confirm" onclick="confirmCards()" disabled="">Confirm</button>
 
                 </div>
             </div>
-        </div>  
-        <div class="w3-content w3-centered" style="margin-top: 56px;">
-            <div class="w3-centered scrollmenu" id="othercards">
-                <!--other players cards-->
-                <button class="w3-button card w3-red" id="winner" onclick="choseTheWinner()" disabled>Confirm</button>
-            </div>
-            <div class="w3-padding-16 w3-center">
-                <!--the black card-->
-                <div class="w3-button w3-black card" id="blackCard"></div>
-                <div class="w3-button w3-black card" id="pick"></div>
+            <div class="w3-col m2">
 
-            </div>
-            <div class="w3-centered scrollmenu" id="mycards">
-                <!--this players cards-->
-
-                <button class="w3-button card w3-red" id="confirm" onclick="confirmCards()">Confirm</button>
             </div>
         </div>
     </div>
